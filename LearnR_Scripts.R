@@ -1,8 +1,17 @@
+# Check if Libraries is installed or not, if not then install it
+usePackage <- function(p) 
+{
+  if (!is.element(p, installed.packages()[,1]))
+    install.packages(p, dep = TRUE)
+  require(p, character.only = TRUE)
+}
+
+
 # Import Libraries 
-library("sqldf")
-library("DT")
-library("plyr")
-library("data.table")
+usePackage("sqldf")
+usePackage("DT")
+usePackage("plyr")
+usePackage("data.table")
 
 # read data
 flights14 <- fread("flights14.csv")
